@@ -1,0 +1,16 @@
+#Блокируем плохих ботов и роботов
+Options All -Indexes
+RewriteEngine On
+SetEnvIfNoCase User-Agent "^FrontPage" bad_bot
+SetEnvIfNoCase User-Agent "^Java.*" bad_bot
+SetEnvIfNoCase User-Agent "^Microsoft.URL" bad_bot
+SetEnvIfNoCase User-Agent "^MSFrontPage" bad_bot
+SetEnvIfNoCase User-Agent "^Offline.Explorer" bad_bot
+SetEnvIfNoCase User-Agent "^[Ww]eb[Bb]andit" bad_bot
+SetEnvIfNoCase User-Agent "^Full Web Bot*" bad_bot
+SetEnvIfNoCase User-Agent "^Zeus" bad_bot
+<limit GET POST HEAD>
+Order Allow,Deny
+Allow from all
+Deny from env=bad_bot
+</limit>
